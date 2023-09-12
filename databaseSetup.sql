@@ -14,12 +14,13 @@ CREATE TABLE Users(
 );
 
 -- Size of each variable is up to discussion, or until new information is presented.
+-- All contacts will be stored in this table, the parent_id will tell which contacts a user has.
 CREATE TABLE Contacts (
     contact_id INT AUTO_INCREMENT,
     firstName VARCHAR(30) NOT NULL,
     lastName VARCHAR(30) NOT NULL,
     preferFirst BOOLEAN,        -- Prefers first name if true, else prefer last.
-    email VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(50) NOT NULL, -- cannot be unique to allow multiple users to have the same contacts.
     phone  INT UNSIGNED NOT NULL,
     creation DATE NOT NULL,      -- use DATETIME if the time is needed as well. Easier to search without the time.
     parent_id INT NOT NULL,
@@ -49,7 +50,7 @@ VALUES
 -- Examples of ways to seach the table
 
 -- Example of using join to see all contacts that a particular user has.
-SELECT * FROM contacts      -- (firstName, lastName, email)
+SELECT username, parent_id, contact_id, firstName, lastName, email FROM contacts      -- (firstName, lastName, email)
 INNER JOIN users
 ON users.id = contacts.parent_id;
 
