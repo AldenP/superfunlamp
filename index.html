@@ -3,27 +3,33 @@
     <head>
         <title>Contact Manager</title>
         <link rel = "stylesheet" href = "style.css">
+
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Space+Mono&display=swap');
+        </style>
+            
     </head>
     <body>
 
         <div class ="header">
-            <h1>Welcome to the contact manager!</h1>
+            <h1>Welcome to the Contact Manager!</h1>
         </div>
 
-        <p>Please enter your username and password to login:</p>
+        <div class = "transbox">
+            <p>Please enter your username and password to login:</p>
 
-        <form action = "/action_page.php">
+            <form action = "/connect.htp" method = "post">
 
-			<label>Username</label>
-			<input type="text" name="Username">
-            <br><br>
+                <label>Username</label>
+                <input type="text" name="Username" class = "input_box">
+                <br><br>
 
-			<label>Password</label>
-            <input type ="password" name = "Password">
-            <br><br>
-
-            <input type = "Submit" value = "Submit">
-		</form>
-
+                <label>Password</label>
+                <input type ="password" name = "Password" class = "input_box">
+                <br><br>
+                <input type = "submit" value = "Login" class = "form-submit-button button_hover">
+            </form>
+        </div>
+        
     </body>
 </html>
