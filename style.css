@@ -9,9 +9,13 @@
 
 body {
     text-align: center;
-    background-image: url("https://i.imgur.com/1UDDrQ8.jpg");
     font-family: 'Raleway', sans-serif;
     font-size: 25px;
+    background-image: url("https://i.imgur.com/1UDDrQ8.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
 }
 
 div.transbox {
