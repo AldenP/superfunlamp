@@ -1,36 +1,44 @@
 <?php
-include 'util.php';
+        $inData = getRequest();
 
-$request = getRequest();
+        $firstName = $inData["firstName"];
+        $lastName = $inData["lastName"];
+        $phone = $inData["phone"];
+        $email = $inData["email"];
+        $userId = $inData["parent_id"];
+        $id = $inData["contact_id"];
+        $name = $firstName . ' ' . $lastName;
 
-// $userID = $request[userIDKey];
-// $id = $request[idKey];
-// $phoneNumber = $request[phoneNumberKey];
-// $email = $request[emailKey];
-// $firstName = $request[firstNameKey];
-// $lastName = $request[lastNameKey];
-$userID = $request -> userID;
-$id = $request -> id;
-$phoneNumber = $request -> phoneNumber;
-$email = $request -> email;
-$firstName = $request -> firstName;
-$lastName = $request -> lastName;
+        $conn = new mysqli("localhost", "lisa", "saxophone", "ContactManager");
+        if ($conn->connect_error)
+        {
+                returnError( $conn->connect_error );
+        }
+        else
+        {
+                $stmt = $conn->prepare("UPDATE Contacts SET phone = ?, email = ?, firstName = ?, lastName = ? WHERE parent_id = ? AND contact_id = ?;");
+                $stmt->bind_param("ssssss", $phone, $email, $firstName, $lastName, $userId,  $id);
+                $stmt->execute();
+                $stmt->close();
+                $conn->close();
+                returnError("");
+        }
 
-$database = "UserDatabase"; // ini_get("database")
-$connection = new mysqli("localhost", "root", "COP4331C", $database, 3306);
-// $connection->select_db($database);
-$err = $connection->connect_error;
-if ($err) 
-{
-	returnError($err);
-	return;
-}
+        function getRequest()
+        {
+                return json_decode(file_get_contents('php://input'), true);
+        }
 
-$stmt = $connection->prepare("UPDATE Contacts SET PhoneNumber = ?, Email = ?, FirstName = ?, LastName = ? WHERE UserID = ? AND ID = ?");
-$stmt->bind_param("ssssii", $phoneNumber, $email, $firstName, $lastName, $userID, $id);
-$stmt->execute();
-$stmt->close();
-$connection->close();
-returnEmpty();
+        function sendResult( $obj )
+        {
+                header('Content-type: application/json');
+                echo $obj;
+        }
+
+        function returnError( $err )
+        {
+                $retValue = '{"error":"' . $err . '"}';
+                sendResult( $retValue );
+        }
 
 ?>
