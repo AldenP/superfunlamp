@@ -11,7 +11,7 @@ $pageIndex = $request -> page;
 $countsPerPage = $request -> countsPerPage;
 
 $database = "UserDatabase"; // ini_get("database")
-$connection = new mysqli("insert server", "insert user", "insert password", $database, 3306);
+$connection = new mysqli("localhost", "root", "COP4331C", $database, 3306);
 // $connection->select_db($database);
 $err = $connection->connect_error;
 if ($err) 
