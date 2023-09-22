@@ -3,13 +3,18 @@ include 'util.php';
 
 $request = getRequest();
 
-$userID = $request[$userIDKey];
-$id = $request[$idKey];
+// $userID = $request[userIDKey];
+// $id = $request[idKey];
+$userID = $request -> userID;
+$id = $request -> id;
 
-$connection = new mysqli();
-$connection->select_db(ini_get("database"));
-if ($connection->connect_error) {
-	returnWithError($connection->connect_error);
+$database = "UserDatabase"; // ini_get("database")
+$connection = new mysqli("insert server", "insert user", "insert password", $database, 3306);
+// $connection->select_db($database);
+$err = $connection->connect_error;
+if ($err) 
+{
+	returnError($err);
 	return;
 }
 
