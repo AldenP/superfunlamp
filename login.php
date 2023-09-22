@@ -43,3 +43,4 @@ include 'util.php';
         $login -> lastName = $lastName;
 		returnResult($login);
 	}
+?>
