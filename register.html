@@ -3,41 +3,44 @@
     <head>
         <title>Contact Manager</title>
         <link rel = "stylesheet" href = "style.css">
-
+        <script type="text/javascript" src="lampcode.js"></script>
         <style >
             @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Space+Mono&display=swap');
         </style>
-            
+
     </head>
     <body>
         <div class ="header">
             <h1>Register</h1>
         </div>
 
-        <div class = "transbox_register">
-            <form action = "signup.php" method = "post">
-                
+        <!--<div class = "transbox_register">-->
+                <form class="login-form">
+                <!--    <form action = "signup.php" method = "post"> -->
+
                 <p>Please enter your information below:</p>
 
                 <label>First Name</label>
-                <input type="text" name="first_name" class = "input_box">
-                <br><br>
+                <input required id="firstName" type="text" class = "input_box"/>
+                <br></br>
 
                 <label>Last Name</label>
-                <input type="text" name="last_name" class = "input_box">
-                <br><br>
+                <input required id="lastName"  type="text" class = "input_box"/>
+                <br></br>
 
                 <label>Username</label>
-                <input type="text" name="username" class = "input_box">
-                <br><br>
+                <input required id="username" type="text"  class = "input_box"/>
+                <br></br>
 
                 <label>Password</label>
-                <input type ="password" name = "password" class = "input_box">
-                <br><br>
+                <input required id="passWord" type ="password" class = "input_box"/>
+                <br></br>
 
-                <input type = "submit" value = "signup" class = "form-submit-button button_hover">
-            </form>
-        </div>
+                <button type="button" id="loginButton" class = "buttons" onclick="doRegister();">Sign Up</button>
+                <span id="registrationResult"></span>
+                <!--<input type = "submit" value = "signup" class = "form-submit-button button_hover">-->
+                <!--  </form> -->
+        <!--</div>-->
 
     </body>
 </html>
