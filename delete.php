@@ -1,28 +1,43 @@
 <?php
-include 'util.php';
 
 $request = getRequest();
 
 // $userID = $request[userIDKey];
 // $id = $request[idKey];
-$userID = $request -> userID;
-$id = $request -> id;
+$userID = $request["userId"];
+$contactID = $request["contactId"];
 
 $database = "UserDatabase"; // ini_get("database")
-$connection = new mysqli("localhost", "root", "COP4331C", $database, 3306);
+$connection = new mysqli("localhost", "lisa", "saxophone", "ContactManager");
 // $connection->select_db($database);
 $err = $connection->connect_error;
-if ($err) 
+if ($err)
 {
-	returnError($err);
-	return;
+        returnError($err);
 }
+else {
 
-$stmt = $connection->prepare("DELETE FROM Contacts WHERE userID = ? AND ID = ?");
-$stmt->bind_param("ii", $userID, $id);
+$stmt = $connection->prepare("DELETE FROM Contacts WHERE parent_id = ? AND contact_id = ?");
+$stmt->bind_param("ss", $userID, $contactID);
 $stmt->execute();
 $stmt->close();
 $connection->close();
-returnEmpty();
+returnError("");
+}
+function getRequest()
+        {
+                return json_decode(file_get_contents('php://input'), true);
+        }
 
+function sendResult( $obj )
+        {
+                header('Content-type: application/json');
+                echo $obj;
+        }
+
+function returnError( $err )
+        {
+                $retValue = '{"error":"' . $err . '"}';
+                sendResult( $retValue );
+        }
 ?>
