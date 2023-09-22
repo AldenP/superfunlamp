@@ -10,11 +10,11 @@ include 'util.php';
 	$connection = new mysqli("insert server", "insert user", "insert password", $database, 3306);
 	// $connection->select_db($database);
 	$err = $connection->connect_error;
-    if ($err) 
-    {
+        if ($err) 
+        {
         returnError($err);
         return;
-    }
+        }
 	else
 	{   
         $stmt = $connection->prepare("SELECT ID, FirstName, LastName FROM Users WHERE UserName = ? AND Password = ?");
