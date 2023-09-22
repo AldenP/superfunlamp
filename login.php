@@ -7,7 +7,7 @@ include 'util.php';
 	$password = $request -> password;
 
 	$database = "UserDatabase"; // ini_get("database")
-	$connection = new mysqli("insert server", "insert user", "insert password", $database, 3306);
+	$connection = new mysqli("localhost", "lisa", "saxophone", "ContactManager");
 	// $connection->select_db($database);
 	$err = $connection->connect_error;
         if ($err) 
