@@ -16,11 +16,11 @@ include 'util.php';
 	$connection = new mysqli("localhost", "root", "COP4331C", $database, 3306);
 	// $connection->select_db($database);
 	$err = $connection->connect_error;
-    if ($err) 
-    {
-        returnError($err);
-        return;
-    }
+        if ($err) 
+        {
+	returnError($err);
+	return;
+        }
 	
 	$stmt = $connection->prepare("INSERT into Users (FirstName,LastName,Username,Password) VALUES(?,?,?,?)");
 	$stmt->bind_param("ssss", $firstName, $lastName, $username, $password);
