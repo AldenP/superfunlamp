@@ -40,6 +40,18 @@ div.transbox_register {
     padding: 10px;
 }
 
+div.transbox_contacts {
+    margin: auto;
+    background-color: #ffffff;
+    opacity: 0.7;
+    border-radius: 50px;
+    border: 10px;
+    width: 1000px;
+    height: 540px;
+    padding: 10px;
+    padding-top: 30px;
+}
+
 .form input{
     font-family: Open, sans-serif;
     border: none;
