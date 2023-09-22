@@ -6,24 +6,30 @@
 
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Space+Mono&display=swap');
+
+            table {
+                border: 1px solid black;
+                border-radius: 20px;
+            }
+            th, td {
+                border-bottom: 2px solid black;
+                border-collapse: collapse;
+            }
+            th:last-child, td:last-child {
+                border-right: none;
+            }
         </style>
     </head>
-    <style>
-        table {
-            border: 1px solid black;
-            border-radius: 20px;
-        }
-        tb, td {
-            border-collapse: collapse;
-        }
-    </style>
+
     <body>
 
         <div class = "header">
             <h1>Contact List</h1>
         </div>
 
-        <table style="width:100%">
+        <div class = "vertical"></div>
+
+        <table class=list style="width:100%">
             <tr>
                 <th style="width:30%">Name</th>
                 <th style="width:40%">Email</th>
