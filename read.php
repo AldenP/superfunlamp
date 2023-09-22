@@ -3,23 +3,39 @@ include 'util.php';
 
 $request = getRequest();
 
-$userID = $request[$userIDKey];
+// $userID = $request[userIDKey];
+// $pageIndex = $request[pageKey];
+// $countsPerPage = $request[countsPerPageKey];
+$userID = $request -> userID;
+$pageIndex = $request -> page;
+$countsPerPage = $request -> countsPerPage;
 
-$connection = new mysqli();
-$connection->select_db(ini_get("database"));
-if ($connection->connect_error) {
-	returnWithError($connection->connect_error);
+$database = "UserDatabase"; // ini_get("database")
+$connection = new mysqli("insert server", "insert user", "insert password", $database, 3306);
+// $connection->select_db($database);
+$err = $connection->connect_error;
+if ($err) 
+{
+	returnError($err);
 	return;
 }
 
-$stmt = $connection->prepare("select * from Contacts where UserId = ?");
-$stmt->bind_param("i", $userID);
+$stmt = $connection->prepare("SELECT * FROM Contacts WHERE UserId = ? ORDER BY LastName, FirstName, UserID ASC LIMIT ? OFFSET ?");
+$offset = $countsPerPage * $pageIndex;
+$stmt->bind_param("iii", $userID, $countsPerPage, $offset);
 $stmt->execute();
 $result = $stmt->get_result();
-$result->fetch_all();
-$resultString = implode(",", $result);
 $stmt->close();
 $connection->close();
-returnWithResultAndError($resultString);
+
+if ($result)
+{
+	$arr = $result->fetch_all();
+	returnResult($arr);
+} 
+else 
+{
+	returnEmpty();
+}
 
 ?>
