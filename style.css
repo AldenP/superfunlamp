@@ -18,16 +18,27 @@ body {
     background-position: center;
 }
 
-div.transbox {
+div.transbox_login {
     margin: auto;
     background-color: #ffffff;
     opacity: 0.7;
     border-radius: 50px;
     border: 10px;
     width: 700px;
-    height: 280px;
+    height: 410px;
     padding: 10px;
-  }
+}
+
+div.transbox_signup {
+    margin: auto;
+    background-color: #ffffff;
+    opacity: 0.7;
+    border-radius: 50px;
+    border: 10px;
+    width: 700px;
+    height: 410px;
+    padding: 10px;
+}
 
 .form-submit-button {
     border-radius: 50px;
@@ -41,6 +52,7 @@ div.transbox {
     color: black;
     transition-duration: 0.4s;
 }
+
 .button_hover:hover {
     color: black;
     background-color: grey;
