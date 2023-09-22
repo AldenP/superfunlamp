@@ -6,11 +6,21 @@ const emailKey = "email";
 const firstNameKey = "firstName";
 const lastNameKey = "lastName";
 const idKey = "ID";
+const pageKey = "page";
+const countsPerPageKey = "countsPerPage";
+const usernameKey = "username";
+const passwordKey = "password";
+
+class Login{
+    public int $id;
+    public string $firstName;
+    public string $lastName;
+}
 
 function getRequest()
 {
-    $file = file_get_contents('php://input');
-    return json_decode($file);
+    // return json_decode(file_get_contents('php://input'));
+    return json_decode(readline());
 }
 
 function sendResponse($obj)
@@ -25,16 +35,39 @@ function returnEmpty()
     sendResponse($value);
 }
 
-function returnError($err)
+function returnError(string $err)
 {
-    $value = '{"error":"' . $err . '"}';
-    sendResponse($value);
+    class Error{
+        public string $error;
+    }
+    $error = new Error();
+    $error -> error = $err;
+    $value = json_encode($error);
+    if ($value == false)
+    {
+        returnEmpty();
+    }
+    else 
+    {
+        sendResponse($value);
+    }
 }
 
-function returnResult($results)
+function returnResult(mixed $results)
 {
-    $value = '{"results":[' . $results . ']}';
-    sendResponse($value);
+    class Result{
+        public mixed $result;
+    }
+    $result = new Result();
+    $result -> result = $results;
+    $value = json_encode($results);
+    if ($value == false)
+    {
+        returnEmpty();
+    }
+    else 
+    {
+        sendResponse($value);
+    }
 }
-
 ?>
