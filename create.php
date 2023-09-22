@@ -1,5 +1,4 @@
 <?php
-include 'util.php';
 
 $request = getRequest();
 
@@ -8,28 +7,44 @@ $request = getRequest();
 // $email =  $request[emailKey];
 // $firstName =  $request[firstNameKey];
 // $lastName = $request[lastNameKey];
-$userID = $request -> userID;
-$phoneNumber = $request -> phoneNumber;
-$email =  $request -> email;
-$firstName =  $request -> firstName;
-$lastName = $request -> lastName;
+$firstName = $request["firstName"];
+$lastName = $request["lastName"];
+$phone = $request["phone"];
+$email = $request["email"];
+$userId = $request["userId"];
 
 $database = "UserDatabase"; // ini_get("database")
-$connection = new mysqli("localhost", "root", "COP4331C", $database, 3306);
+$connection = new mysqli("localhost", "lisa", "saxophone", "ContactManager");
 // $connection->select_db($database);
 $err = $connection->connect_error;
-if ($err) 
+if ($err)
 {
-	returnError($err);
-	return;
+        returnError($err);
 }
-
-$stmt = $connection->prepare("INSERT into Contacts (UserId,PhoneNumber,Email,FirstName,LastName) VALUES(?,?,?,?,?)");
-
-$stmt->bind_param("issss", $userID, $phoneNumber, $email, $firstName, $lastName);
+else{
+$stmt = $connection->prepare("INSERT into Contacts (firstName, lastName,phone,email,parent_id) VALUES(?,?,?,?,?)");
+$stmt->bind_param("sssss", $userId, $phone, $email, $firstName, $lastName);
 $stmt->execute();
 $stmt->close();
 $connection->close();
-returnEmpty();
+returnError("");
+}
 
+
+function getRequest()
+        {
+                return json_decode(file_get_contents('php://input'), true);
+        }
+
+function sendResult( $obj )
+        {
+                header('Content-type: application/json');
+                echo $obj;
+        }
+
+function returnError( $err )
+        {
+                $retValue = '{"error":"' . $err . '"}';
+                sendResult( $retValue );
+        }
 ?>
