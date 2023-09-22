@@ -3,6 +3,7 @@
     <head>
         <title>Contact Manager</title>
         <link rel = "stylesheet" href = "style.css">
+        <script type="text/javascript" src="js/lampcode.js"></script>
 
         <style >
             @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Space+Mono&display=swap');
@@ -19,7 +20,7 @@
             
             <p>Please enter your username and password to login:</p>
 
-            <form action = "login.php" method = "post">
+            <form class = "loginbox" id = "loginbox">
 
                 <label>Username</label>
                 <input type="text" name="Username" class = "input_box">
@@ -30,6 +31,8 @@
                 <br><br>
                 <input type = "submit" value = "Login" class = "form-submit-button button_hover">
             </form>
+
+            <button onclick="doLogin();" class = "form-submit-button  button_hover">Login</button>
 
             <p>Or register now!</p>
             <button onclick="window.location.href = 'register.html';" class = "form-submit-button button_hover">Register</button>
