@@ -4,7 +4,7 @@
         <title>Contact Manager</title>
         <link rel = "stylesheet" href = "style.css">
 
-        <style>
+        <style >
             @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Space+Mono&display=swap');
         </style>
             
@@ -15,10 +15,11 @@
             <h1>Welcome to the Contact Manager!</h1>
         </div>
 
-        <div class = "transbox">
+        <div class = "transbox_login">
+            
             <p>Please enter your username and password to login:</p>
 
-            <form action = "/connect.htp" method = "post">
+            <form action = "login.php" method = "post">
 
                 <label>Username</label>
                 <input type="text" name="Username" class = "input_box">
@@ -29,7 +30,10 @@
                 <br><br>
                 <input type = "submit" value = "Login" class = "form-submit-button button_hover">
             </form>
+
+            <p>Or register now!</p>
+            <button onclick="window.location.href = 'register.html';" class = "form-submit-button button_hover">Register</button>
         </div>
-        
+
     </body>
 </html>
