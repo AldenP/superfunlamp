@@ -19,7 +19,7 @@ include 'util.php';
         if ($err) 
         {
 	returnError($err);
-	return;
+	//return;
         }
 	
 	$stmt = $connection->prepare("INSERT into Users (FirstName,LastName,Username,Password) VALUES(?,?,?,?)");
@@ -29,7 +29,7 @@ include 'util.php';
 	{
 		$err = $stmt->$error;
 		returnError($err);
-		return;
+		//return;
 	}
 	$stmt->close();
 	$connection->close();
