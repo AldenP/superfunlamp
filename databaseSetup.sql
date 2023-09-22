@@ -10,7 +10,9 @@ CREATE DATABASE ContactManager;
 CREATE TABLE Users(
     id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL UNIQUE,
-    passWord VARCHAR(255) NOT NULL
+    passWord VARCHAR(255) NOT NULL,
+    firstName VARCHAR(30) NOT NULL,
+    lastName VARCHAR(30) NOT NULL
 );
 
 -- Size of each variable is up to discussion, or until new information is presented.
@@ -31,11 +33,11 @@ CREATE TABLE Contacts (
 
 -- @block 
 -- This is the format for adding a new user to the table
-INSERT INTO Users(username, passWord)
+INSERT INTO Users(username, passWord, firstName, lastName)
 VALUES
-    ("davidP", "1234"),
-    ("Lamp", "itsBright"),
-    ("Shade", "tooDark");
+    ("davidP", "1234", "David", "Patenaude"),
+    ("Lamp", "itsBright", "Office", "LAMP"),
+    ("Shade", "tooDark", "Office", "SHADE");
 
 -- @block
 INSERT INTO contacts(firstName, lastName, preferFirst, email, phone, creation, parent_id)
