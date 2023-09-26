@@ -18,6 +18,18 @@ body {
     background-position: center;
 }
 
+/* .vertical {
+    border-left: 2px solid black;
+    height: 100%;
+    position:absolute;
+    left: 28%;
+
+    border-right: 2px solid black;
+    height: 100%;
+    position:absolute;
+    right: 34%;
+} */
+
 div.transbox_login {
     margin: auto;
     background-color: #ffffff;
@@ -64,9 +76,8 @@ div.transbox_contacts {
     margin: 10px;
     font-size: 16px;
     outline: none;
-    background-color: #f7f1f9;
+    background-color:rgba(250, 235, 215, 0.492);
 }
-
 
 .form-submit-button {
     border-radius: 50px;
@@ -80,11 +91,12 @@ div.transbox_contacts {
     color: black;
     transition-duration: 0.4s;
 }
+
 .button_hover:hover {
     color: black;
     background-color: grey;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
-  }
+}
 
 .input_box {
     background-color: white;
@@ -107,11 +119,20 @@ div.transbox_contacts {
     color: #95060a;
 }
 
+table {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    background-color:rgba(250, 235, 215, 0.492);
+    font-size: 22px;
+    width: 100%;
+    border-radius: 15px;
+}
+
 th {
-    color: white;
+    color: black;
     border-radius: 30px;
     padding: 10px;
-    background-color: black;
     border-radius: 25px;
 }
 
