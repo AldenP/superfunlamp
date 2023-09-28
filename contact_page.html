@@ -5,22 +5,37 @@
         <script type="text/javascript" src="lampcode.js"></script>
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Space+Mono&display=swap');
+
+            .add_button, .search_button {
+                padding: .35em;
+                padding-left: .5em;
+                padding-right: .5em;
+                font-size: 16px;
+                font-weight: 700;
+                border-radius: .9em;
+                letter-spacing: .02em;
+                border: none;
+                align-items: center;
+                position: relative;
+                cursor: pointer;
+            }
+            .icon {
+                
+            }
         </style>
     </head>
     <style>
         th, td {            
-            border-collapse: collapse;
-            
+            border-collapse: collapse;            
         }
     </style>
     <body>
 
-        <button type="button" id="addButton" class="buttons" onclick="addContact();">Add Contact</button>
-        <br></br>
+        <button type="button" id="addButton" class="add_button" addContact();">Add Contact</button>
+        
 
-        <button type="button" id="Search" class="buttons" onclick="searchContact();">Search Contacts</button>
-        <input required id="search" type="text" class = "input_box"/>
-        <br></br>
+        <button type="button" id="Search" class="search_button" onclick="searchContact();">Search Contacts</button>
+        <input required id="search" type="text" class = "input_box" style="border-radius: .5em;"/>
 
         <div class = "header" style="color:white">
             <h1>Contact List</h1>
@@ -28,7 +43,7 @@
 
         <!-- <div class = "vertical" style="height:100%"></div> -->
 
-        <table style="width:90%">
+        <table style="width:90%" style="height:auto;">
             <tr>
                 <th style="width:30%">Name</th>
                 <th style="width:41%">Email</th>
@@ -234,5 +249,7 @@
                 </td>
             </tr>
         </table>
+        <button type="button" id="Next Page" class="buttons">Next Page</button>
+        <button class="icon"></button>
     </body>
 </html>
