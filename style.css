@@ -76,7 +76,7 @@ div.transbox_contacts {
     margin: 10px;
     font-size: 16px;
     outline: none;
-    background-color:rgba(250, 235, 215, 0.492);
+    background-color:rgba(250, 235, 215, 0.644);
 }
 
 .form-submit-button {
@@ -100,8 +100,10 @@ div.transbox_contacts {
 
 .input_box {
     background-color: white;
-    padding: 5px;
+    padding: 3px;
     font-size: 20px;
+    position: relative;
+    left: 34%;
 }
 
 .form .register-span{
@@ -123,7 +125,7 @@ table {
     margin-left: auto;
     margin-right: auto;
     display: block;
-    background-color:rgba(250, 235, 215, 0.492);
+    background-color:rgba(250, 235, 215, 0.644);
     font-size: 22px;
     width: 100%;
     border-radius: 15px;
