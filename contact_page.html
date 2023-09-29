@@ -6,7 +6,7 @@
         <style>
             @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Space+Mono&display=swap');
 
-            .add_button, .search_button {
+            .add_button {
                 padding: .35em;
                 padding-left: .5em;
                 padding-right: .5em;
@@ -17,25 +17,49 @@
                 border: none;
                 align-items: center;
                 position: relative;
+                left: 34%;
                 cursor: pointer;
             }
-            .icon {
-                
+            .search_button {
+                padding: .35em;
+                padding-left: .5em;
+                padding-right: .5em;
+                font-size: 16px;
+                font-weight: 700;
+                border-radius: .9em;
+                letter-spacing: .02em;
+                border: none;
+                align-items: center;
+                position: relative;
+                left: 34%;
+                cursor: pointer;
+            }
+            .update, .delete {
+                padding: .2em;
+                padding-left: .2em;
+                padding-right: .2em;
+                font-size: 14px;
+                font-weight: 600;
+                border-radius: .9em;
+                letter-spacing: .01em;
+                border: none;
+                align-items: center;
+                position: relative;
+                cursor: pointer;
             }
         </style>
     </head>
     <style>
-        th, td {            
-            border-collapse: collapse;            
+        th, td {
+            border-collapse: collapse;
         }
     </style>
     <body>
 
         <button type="button" id="addButton" class="add_button" addContact();">Add Contact</button>
-        
 
         <button type="button" id="Search" class="search_button" onclick="searchContact();">Search Contacts</button>
-        <input required id="search" type="text" class = "input_box" style="border-radius: .5em;"/>
+        <input required id="search" type="text" class="input_box" size="15" style="border-radius: .5em;"/>
 
         <div class = "header" style="color:white">
             <h1>Contact List</h1>
@@ -64,8 +88,8 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
@@ -83,28 +107,8 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
-                    <br></br>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    (Full name)
-                    <br></br>
-                </td>
-                
-                <td>
-                    (Email)
-                    <br></br>
-                </td>
-                <td>
-                    (Phone Number)
-                    <br></br>
-                </td>
-                 <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
@@ -123,8 +127,8 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
@@ -143,8 +147,8 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
@@ -163,8 +167,8 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
@@ -183,8 +187,8 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
@@ -203,8 +207,8 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
@@ -223,8 +227,8 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
@@ -243,8 +247,28 @@
                     <br></br>
                 </td>
                  <td>
-                    <button type="button" id="Delete" class="buttons" onclick="deleteContact();">Delete</button>
-                    <button type="button" id="Update" class="buttons" onclick="updateContact();">Update</button>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
+                    <br></br>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    (Full name)
+                    <br></br>
+                </td>
+                
+                <td>
+                    (Email)
+                    <br></br>
+                </td>
+                <td>
+                    (Phone Number)
+                    <br></br>
+                </td>
+                 <td>
+                    <button type="button" id="Delete" class="update" onclick="deleteContact();">Delete</button>
+                    <button type="button" id="Update" class="delete" onclick="updateContact();">Update</button>
                     <br></br>
                 </td>
             </tr>
