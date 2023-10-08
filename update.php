@@ -1,15 +1,20 @@
 <?php
-        $inData = getRequest();
+#update.php
+header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
-        $firstName = $inData["firstName"];
-        $lastName = $inData["lastName"];
-        $phone = $inData["phone"];
-        $email = $inData["email"];
-        $userId = $inData["parent_id"];
-        $id = $inData["contact_id"];
-        $name = $firstName . ' ' . $lastName;
+        $request = getRequest();
 
-        $conn = new mysqli("localhost", "lisa", "saxophone", "ContactManager");
+        $firstName = $request["firstName"];
+        $lastName = $request["lastName"];
+        $phone = $request["phone"];
+        $email = $request["email"];
+        $userId = $request["parent_id"];
+        $id = $request["contact_id"];
+       
+
+        $conn = new mysqli("localhost", "superfun", "lamp", "Manager");
         if ($conn->connect_error)
         {
                 returnError( $conn->connect_error );
@@ -20,8 +25,10 @@
                 $stmt->bind_param("ssssss", $phone, $email, $firstName, $lastName, $userId,  $id);
                 $stmt->execute();
                 $stmt->close();
-                $conn->close();
-                returnError("");
+		$conn->close();
+
+		http_response_code(200);
+		returnError("");
         }
 
         function getRequest()

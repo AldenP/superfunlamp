@@ -1,19 +1,24 @@
 <?php
+#Delete.php - deletes a contact
+
+header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
 
 $request = getRequest();
 
 // $userID = $request[userIDKey];
 // $id = $request[idKey];
-$userID = $request["userId"];
-$contactID = $request["contactId"];
+$userID = $request["parent_id"];
+$contactID = $request["contact_id"];
 
 $database = "UserDatabase"; // ini_get("database")
-$connection = new mysqli("localhost", "lisa", "saxophone", "ContactManager");
+$connection = new mysqli("localhost", "superfun", "lamp", "Manager");
 // $connection->select_db($database);
 $err = $connection->connect_error;
-if ($err)
+if ($err) 
 {
-        returnError($err);
+	returnError($err);
 }
 else {
 

@@ -1,4 +1,10 @@
 <?php
+#create.php - Creates a new Contact
+
+header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: Origin, Content-Type, X-Auth-Token');
+
 
 $request = getRequest();
 
@@ -11,25 +17,34 @@ $firstName = $request["firstName"];
 $lastName = $request["lastName"];
 $phone = $request["phone"];
 $email = $request["email"];
-$userId = $request["userId"];
+$userId = $request["parent_id"];
 
-$database = "UserDatabase"; // ini_get("database")
-$connection = new mysqli("localhost", "lisa", "saxophone", "ContactManager");
+$connection = new mysqli("localhost", "superfun", "lamp", "Manager");
 // $connection->select_db($database);
 $err = $connection->connect_error;
-if ($err)
+if ($err) 
 {
-        returnError($err);
+	returnError($err);
 }
 else{
-$stmt = $connection->prepare("INSERT into Contacts (firstName, lastName,phone,email,parent_id) VALUES(?,?,?,?,?)");
-$stmt->bind_param("sssss", $userId, $phone, $email, $firstName, $lastName);
-$stmt->execute();
-$stmt->close();
-$connection->close();
-returnError("");
+	$stmt = $connection->prepare("INSERT into Contacts (firstName, lastName,phone,email,parent_id) VALUES(?,?,?,?,?)"); #added a semi colon to terminate statement (may not be needed?)
+	$stmt->bind_param("sssss", $firstName, $lastName, $phone, $email, $userId);
+	$stmt->execute();
+	$stmt->close();
+	$connection->close();
+
+	#Send a confirmation to the javascript (to be seen under developer tools for debug).
+	$retValue = '{"user_id":' . $userId . ',"firstName":"' . $firstName . '","lastName":"' . $lastName .'","phone":"' . $phone . '","email":"' . $email . '","error":""}';
+	sendResult($retValue); #send the data added back (as json) as a confirmation of accurate data
+
+	#returnError("Connection Closed by create.php");
 }
 
+function ret($first)
+{
+	$ab = '{firstname":"' .$first . '"}';
+	echo $ab;
+}
 
 function getRequest()
         {

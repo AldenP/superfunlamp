@@ -1,48 +1,74 @@
 <?php
+	#Signup.php = handles the registration of a new user;
+	header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS');
+        header('Access-Control-Allow-Headers: *');
 
-        $inData = getRequest();
+
+	$inData = getRequest();
 
         $firstName = $inData["firstName"];
         $lastName = $inData["lastName"];
         $username = $inData["username"];
-        $password = $inData["passWord"];
-        $existingPassword = "";
+        $password = $inData["password"];
+	
+#	echo "Data Acquired";
 
-        $database = "UserDatabase"; // ini_get("database")
-        $connection = new mysqli("localhost", "lisa", "saxophone", "ContactManager");
-        // $connection->select_db($database);
-        $err = $connection->connect_error;
-        if ($err)
-        {
-        returnError($err);
-        //return;
-        }
-        elseif ($firstName == "" ||  $username == "" ||  $password == "")
-        {
-                returnError("Please fill in the required field");
-        }
+	$connection = new mysqli("localhost", "superfun", "lamp", "Manager");
 
-        elseif (userExists($conn, $username, $existingPassword))
+	$err = $connection->connect_error;
+        if ($err) 
         {
-                http_response_code(409);
-                returnError("Username already exists with password: $existingPassword");
-        }
-        else
+	returnError($err);
+	}
+	elseif ($firstName == "" ||  $username == "" ||  $password == "")
         {
-                $stmt = $conn->prepare("INSERT into Users (firstName,lastName,username,passWord) VALUES(?,?,?,?)");
-                $stmt->bind_param("ssss", $firstName, $lastName, $username, $password);
+		http_response_code(409);
+		returnError("Missing required field");
+		$connection->close();
+	}
+	elseif ( userExists($connection, $username) )
+	{
+		returnError("User Already Exists!");
+		$connection->close();
+	}
+	else
+	{
+		# Renamed Users table column 'passWord' to 'password' so this statement is good!
+                $stmt = $connection->prepare("INSERT into Users (username, password, firstName, lastName) VALUES(?,?,?,?)");
+                $stmt->bind_param("ssss", $username, $password, $firstName, $lastName);
                 $stmt->execute();
-                $stmt->close();
-                $conn->close();
+#                $stmt->close();
+#                $conn->close();
+		
+		#Prepare an SQL statement to get the created users's ID
+		$stmt = $connection->prepare("SELECT id FROM Users WHERE username like ?");
+		$stmt->bind_param("s", $username);
+		$stmt->execute();
+
+		#Get result
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+		$id = $row["id"];		
+
+	#	$obj = '{' . 'id: ' . $row . ', username: "' . $username . '", firstName: "' . $firstName . '", lastName: "' . $lastName . '"}';
+
+		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
+		
+		
+		sendResult($retValue);
 
                 http_response_code(200);
-                returnError("");
+#		returnError("");
+
+		$stmt->close();
+		$connection->close();
         }
 
-
-        function getRequest()
-        {
-                return json_decode(file_get_contents('php://input'), true);
+	
+	function getRequest()
+   	{
+		return json_decode(file_get_contents('php://input'), true);
         }
 
         function sendResult( $obj )
@@ -57,22 +83,22 @@
                 sendResult( $retValue );
         }
 
-        function userExists($conn, $username, &$existingPass)
+        function userExists($connection, $username)
         {
-                $stmt = $conn->prepare("select * from Users where username like ?");
+                $stmt = $connection->prepare("select * from Users where username like ?");
                 $stmt->bind_param("s", $username);
                 $stmt->execute();
 
                 $result = $stmt->get_result();
 
-                if ($row = $result->fetch_assoc())
-                {
-                        $existingPass = $row["Password"];
+                if ( $row = $result->fetch_assoc())
+		{
+			$stmt->close();
                         return true;
                 }
 
+		$stmt->close();
                 return false;
-        }
-
+      }
 
 ?>
