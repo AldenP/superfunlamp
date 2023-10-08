@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html>
     <head>
+
+	 <meta name="viewport" content="width=device-width, initial-scale=1">
+
         <title>Contact Manager</title>
         <link rel = "stylesheet" href = "style.css">
-        <script type="text/javascript" src="lampcode.js"></script>
+	<script type="text/javascript" src="lampcode.js"></script>
         <style >
             @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&family=Space+Mono&display=swap');
         </style>
-
+            
     </head>
     <body>
         <div class ="header">
             <h1>Register</h1>
         </div>
 
-        <!--<div class = "transbox_register">-->
-                <form class="login-form">
-                <!--    <form action = "signup.php" method = "post"> -->
-
+	<div>
+		<form class="login-form">
+		<form action = "signup.php" method = "post">
+                
                 <p>Please enter your information below:</p>
 
                 <label>First Name</label>
@@ -33,14 +36,18 @@
                 <br></br>
 
                 <label>Password</label>
-                <input required id="passWord" type ="password" class = "input_box"/>
+                <input required id="password" type ="password" class = "input_box"/>
                 <br></br>
 
-                <button type="button" id="loginButton" class = "buttons" onclick="doRegister();">Sign Up</button>
-                <span id="registrationResult"></span>
-                <!--<input type = "submit" value = "signup" class = "form-submit-button button_hover">-->
-                <!--  </form> -->
-        <!--</div>-->
+		<button type="button" id="loginButton" class = "buttons" onclick="doRegister();">Sign Up</button>
+		<span id="registrationResult"></span>
+		<input type = "submit" value = "signup" class = "form-submit-button button_hover">
+        <br><br>
+        <span class="login-span">
+            Already have an account? <a href="index.html">Login</a>
+        </span>
+		</form>
+	</div>
 
     </body>
 </html>

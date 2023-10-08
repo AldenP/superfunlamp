@@ -1,0 +1,42 @@
+<html>
+        <title>Edit Contact</title>
+	<!--        <link rel = "stylesheet" href = "style.css">  --!>
+	<script type="text/javascript" src="lampcode.js"></script>
+	
+	<script type="text/javascript">
+	document.addEventListener('DOMContentLoaded', function() 
+	{
+		readCookie();
+
+	}, false);
+	</script>
+
+
+	<body>
+
+		<h1>Update Contact Info Submission</h1>
+<br>
+	<form id="update-form">
+		<label>Enter First Name:</label>
+		<input required type="text" id="firstNameUp" placeholder="First Name">
+		<label><br>Enter Last Name:</label>
+		<input required type="text" id="lastNameUp" placeholder="Last Name">
+		<label><br>Phone:</label>
+		<input required type="text" id="phoneUp" placeholder="Phone">
+		<label><br>Email:</label>
+		<input required type="text" id="emailUp" placeholder="E-Mail">
+	<br>	
+	<button type="button" id="updateButton" class="buttons" onclick="updateContact();"> Update Contact </button><br />
+	<span id="updateResult"></span>	
+	<span id="cancel-span">
+		<a href="contact_page.html">Cancel</a>
+		</span>
+	</form>
+	<br>
+	
+
+	</body>
+</html>
+
+
+
